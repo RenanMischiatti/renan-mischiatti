@@ -239,7 +239,8 @@ function heroHTML() {
       </svg>
 
       <div id="hero-photo" class="relative mx-auto w-full max-w-[420px] lg:max-w-none">
-        <img src="assets/portrait.png" alt="${esc(profile.firstName)} ${esc(profile.lastName)}, ${esc(profile.role)}" width="1254" height="1254" fetchpriority="high" class="hero-portrait mx-auto h-auto w-full object-contain"/>
+        <div aria-hidden="true" class="absolute" style="inset:11% 5% 1%;border:1px solid var(--hairline);border-radius:48% 48% 8px 8px;background-color:var(--accent-soft);background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);background-size:32px 32px;box-shadow:14px 14px 0 color-mix(in oklab,var(--accent) 12%,transparent)"></div>
+        <img src="assets/portrait-v2.png" alt="${esc(profile.firstName)} ${esc(profile.lastName)}, ${esc(profile.role)}" width="1024" height="1536" fetchpriority="high" class="hero-portrait relative mx-auto h-auto w-full object-contain"/>
       </div>
 
       <div class="absolute bottom-2 left-0 hidden border-l border-accent bg-background px-3 py-2 lg:block anim-rise" data-rise="1.3">
@@ -362,14 +363,14 @@ function projectsHTML() {
     .map((project, i) => {
       const reverse = i % 2 === 1;
       return `
-    <article class="project-item grid items-center gap-10 border-t border-border py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
-      <div class="project-visual lg:col-span-6 ${reverse ? "lg:order-2 lg:col-start-7" : ""}">
+    <article class="project-item grid min-w-0 items-center gap-10 border-t border-border py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
+      <div class="project-visual min-w-0 lg:col-span-6 ${reverse ? "lg:order-2 lg:col-start-7" : ""}">
         <div class="overflow-hidden border border-border bg-card">
-          <div class="flex items-center gap-2 border-b border-border px-4 py-3">
+          <div class="flex min-w-0 items-center gap-2 border-b border-border px-4 py-3">
             <span class="h-2 w-2 rounded-full bg-hairline"></span>
             <span class="h-2 w-2 rounded-full bg-hairline"></span>
             <span class="h-2 w-2 rounded-full bg-hairline"></span>
-            <span class="label-mono ml-3 truncate text-muted-foreground">${esc(projectHandle(project.name))}.app</span>
+            <span class="label-mono ml-3 min-w-0 truncate text-muted-foreground">${esc(projectHandle(project.name))}.app</span>
           </div>
           <div class="relative aspect-[16/10] w-full" style="background:${project.image ? project.imageBackground || "#effbff" : `linear-gradient(140deg, ${project.accent} 0%, #454C5E 100%)`}">
             ${project.image ? `<img src="${project.image}" alt="${esc(localValue(project.name))}" loading="lazy" width="1024" height="1024" class="absolute inset-0 h-full w-full ${project.imageClass || "object-contain p-10"}"/>` : `
@@ -389,7 +390,7 @@ function projectsHTML() {
         </div>
       </div>
 
-      <div class="anim-rise-lg lg:col-span-5 ${reverse ? "lg:order-1 lg:col-start-1" : ""}" data-reveal data-reveal-margin="-20% 0px">
+      <div class="anim-rise-lg min-w-0 lg:col-span-5 ${reverse ? "lg:order-1 lg:col-start-1" : ""}" data-reveal data-reveal-margin="-20% 0px">
         <div class="flex items-center gap-3">
           <span class="font-display text-5xl font-bold text-hairline">${project.index}</span>
           <div>
@@ -397,7 +398,7 @@ function projectsHTML() {
             <p class="label-mono mt-1 text-muted-foreground">${project.id}</p>
           </div>
         </div>
-        <h3 class="display-md mt-6">${loc(project.name)}</h3>
+        <h3 class="display-md mt-6 break-words">${loc(project.name)}</h3>
         <p class="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">${loc(project.description)}</p>
         <p class="mt-4 max-w-md border-l border-accent pl-4 text-sm leading-relaxed">${loc(project.problem)}</p>
         <ul class="mt-6 flex flex-wrap gap-2">
