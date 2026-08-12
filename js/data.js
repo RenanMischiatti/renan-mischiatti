@@ -293,12 +293,12 @@ export const highlights = [
 ];
 
 export const sections = [
-  { id: "home", index: "01", label: "Home" },
-  { id: "experience", index: "02", label: "Experience" },
-  { id: "stack", index: "03", label: "Stack" },
-  { id: "projects", index: "04", label: "Projects" },
-  { id: "about", index: "05", label: "About" },
-  { id: "contact", index: "06", label: "Contact" },
+  { id: "home", index: "01", label: { en: "Home", pt: "Início" } },
+  { id: "experience", index: "02", label: { en: "Experience", pt: "Experiência" } },
+  { id: "stack", index: "03", label: { en: "Stack", pt: "Tecnologias" } },
+  { id: "projects", index: "04", label: { en: "Projects", pt: "Projetos" } },
+  { id: "about", index: "05", label: { en: "About", pt: "Sobre" } },
+  { id: "contact", index: "06", label: { en: "Contact", pt: "Contato" } },
 ];
 
 export const dict = {
@@ -310,6 +310,8 @@ export const dict = {
   viewWork: { en: "View my work", pt: "Ver projetos" },
   downloadCv: { en: "Download CV", pt: "Baixar CV" },
   scroll: { en: "Scroll to explore", pt: "Role para explorar" },
+  openMenu: { en: "Open menu", pt: "Abrir menu" },
+  closeMenu: { en: "Close menu", pt: "Fechar menu" },
   experience: { en: "Experience", pt: "Experiência" },
   experienceSub: { en: "My professional journey", pt: "Minha trajetória profissional" },
   stackSub: { en: "The ecosystem I build with", pt: "O ecossistema com que construo" },

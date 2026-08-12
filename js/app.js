@@ -28,6 +28,9 @@ function applyLang() {
   document.querySelectorAll("[data-localized]").forEach((n) => {
     n.textContent = n.dataset[lang];
   });
+  document.querySelectorAll("[data-aria-localized]").forEach((n) => {
+    n.setAttribute("aria-label", n.dataset[lang]);
+  });
   const cvLink = document.querySelector("[data-cv-download]");
   if (cvLink) {
     cvLink.href = profile.cvUrls[lang];
@@ -547,17 +550,17 @@ function chromeHTML() {
   const navLinks = sections
     .map(
       (s) =>
-        `<li><a href="#${s.id}" data-nav="${s.id}" class="label-mono link-underline transition-colors text-muted-foreground hover:text-foreground">${s.label}</a></li>`,
+        `<li><a href="#${s.id}" data-nav="${s.id}" class="label-mono link-underline transition-colors text-muted-foreground hover:text-foreground">${loc(s.label)}</a></li>`,
     )
     .join("");
 
   const mobileLinks = sections
     .map(
       (s, i) =>
-        `<li class="border-b border-border pb-4 anim-rise-sm" style="transition-delay:${(0.06 * i).toFixed(2)}s">
+      `<li class="border-b border-border pb-4 anim-rise-sm" style="transition-delay:${(0.06 * i).toFixed(2)}s">
       <a href="#${s.id}" data-close-menu class="flex items-baseline gap-4">
         <span class="label-mono text-muted-foreground">${s.index}</span>
-        <span class="display-md">${s.label}</span>
+        <span class="display-md">${loc(s.label)}</span>
       </a>
     </li>`,
     )
@@ -596,7 +599,7 @@ function chromeHTML() {
   </div>
 </div>
 
-<header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-500 nav-enter">
+<header id="navbar" class="fixed inset-x-0 top-0 border-b border-transparent transition-all duration-500 nav-enter" style="z-index:80;animation-fill-mode:backwards">
   <nav id="nav-inner" aria-label="Main" class="mx-auto flex h-20 max-w-[1600px] items-center justify-between gap-6 px-6 transition-all duration-500 lg:px-12">
     <a href="#home" class="font-display text-sm font-bold tracking-tight transition-colors hover:text-accent">RM<span class="text-accent">.</span></a>
     <ul class="hidden items-center gap-8 lg:flex">${navLinks}</ul>
@@ -605,14 +608,14 @@ function chromeHTML() {
         <span class="flex items-center gap-2"><button type="button" data-lang-btn="pt" class="transition-colors">PT</button></span>
         <span class="flex items-center gap-2"><span class="opacity-40">/</span><button type="button" data-lang-btn="en" class="transition-colors">EN</button></span>
       </div>
-      <button type="button" id="menu-open" class="lg:hidden" aria-label="Open menu">${lucide.menu()}</button>
+      <button type="button" id="menu-open" data-aria-localized data-en="Open menu" data-pt="Abrir menu" class="lg:hidden" aria-label="Open menu">${lucide.menu()}</button>
     </div>
   </nav>
 
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-background px-6 pb-10 pt-6 lg:hidden hidden opacity-0 transition-opacity duration-300">
+  <div id="mobile-menu" class="fixed inset-0 hidden bg-background px-6 pb-10 pt-6 opacity-0 transition-opacity duration-300 lg:hidden" style="z-index:80">
     <div class="flex items-center justify-between">
       <span class="font-display text-sm font-bold">RM<span class="text-accent">.</span></span>
-      <button type="button" id="menu-close" aria-label="Close menu">${lucide.x()}</button>
+      <button type="button" id="menu-close" data-aria-localized data-en="Close menu" data-pt="Fechar menu" aria-label="Close menu">${lucide.x()}</button>
     </div>
     <ul id="mobile-links" class="mt-16 flex flex-col gap-6">${mobileLinks}</ul>
   </div>
